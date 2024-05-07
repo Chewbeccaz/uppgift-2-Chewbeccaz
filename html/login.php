@@ -4,21 +4,31 @@ session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Hårdkodade exempel
-    $exampel_email = "test@test.com";
-    $exampel_password = "12345";
+      $customer_email = "k@test.com";
+      $customer_password = "k123";
+  
+      $subscriber_email = "s@test.com";
+      $subscriber_password = "s123";
 
     //Hämta från formuläret: 
     $mail = $_POST['email'];
     $password = $_POST['password'];
     
     //Kolla om match
-    if($mail == $exampel_email && $password == $exampel_password) {
+    if($mail == $customer_email && $password == $customer_password) {
         $_SESSION['user_id'] = 1;
         $_SESSION['role'] = "kund";
         
         header("Location: index.php");
         exit;
-    } else {
+    } else if ($mail == $subscriber_email && $password == $subscriber_password) {
+        $_SESSION['user_id'] = 2;
+        $_SESSION['role'] = "prenumerant";
+        
+        header("Location: index.php");
+        exit;
+    
+    }else {
         $error_msg = "Fel användarnamn eller lösenord";
     }
 
