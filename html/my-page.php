@@ -1,8 +1,8 @@
 <?php
 
-require_once 'header.php';
+require_once './components/header.php';
 
 echo "<main><p>MYPAGE - VÄLKOMSTTEXT </p></main>";
 
-require_once 'footer.php'; 
+require_once './components/footer.php';
 ?>

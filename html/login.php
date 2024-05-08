@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
 }
-require_once 'header.php';
+require_once './components/header.php';
 
 echo "<main><p>LOG IN</p></main>";
 if(isset($error_msg)) { ?>
@@ -52,5 +52,5 @@ if(isset($error_msg)) { ?>
     </form>
 
 <?php
-require_once 'footer.php'; 
+require_once './components/footer.php';
 ?>

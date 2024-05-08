@@ -1,8 +1,8 @@
 <?php
 
-require_once 'header.php';
+include_once './components/header.php';
 
 echo "<main><p>NEW PASSWORD</p></main>";
 
-require_once 'footer.php'; 
+include_once './components/footer.php'; 
 ?>

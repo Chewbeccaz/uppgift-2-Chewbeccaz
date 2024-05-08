@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'functions.php';
-require_once 'header.php';
+include_once './components/header.php';
 
 echo "<main><p>This is the main content of the page.</p></main>";
 if(is_signed_in() && user_has_role('kund')){
@@ -11,7 +11,7 @@ if(is_signed_in() && user_has_role('kund')){
 } else {
     echo "välkommen, vänligen logga in för att se mer.";
 }
-require_once 'footer.php'; 
+include_once './components/footer.php'; 
 
 //Måste man avsluta någon session? 
 ?>
