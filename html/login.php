@@ -1,37 +1,32 @@
 <?php
 session_start(); 
 
+$mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db");
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    //Hårdkodade exempel
-      $customer_email = "k@test.com";
-      $customer_password = "k123";
-  
-      $subscriber_email = "s@test.com";
-      $subscriber_password = "s123";
-
-    //Hämta från formuläret: 
     $mail = $_POST['email'];
     $password = $_POST['password'];
-    
-    //Kolla om match
-    if($mail == $customer_email && $password == $customer_password) {
-        $_SESSION['user_id'] = 1;
-        $_SESSION['role'] = "kund";
-        
+
+    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    $stmt = $mysql->prepare($sql);
+    $stmt->bind_param("ss", $mail, $password);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0){
+        //Starta session om användare hittas
+        $row = $result->fetch_assoc();
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['role'] = $row['role'];
+
         header("Location: index.php");
         exit;
-    } else if ($mail == $subscriber_email && $password == $subscriber_password) {
-        $_SESSION['user_id'] = 2;
-        $_SESSION['role'] = "prenumerant";
-        
-        header("Location: index.php");
-        exit;
-    
-    }else {
+    } else {
         $error_msg = "Fel användarnamn eller lösenord";
     }
 
+    $stmt->close();
 }
 require_once './components/header.php';
 
