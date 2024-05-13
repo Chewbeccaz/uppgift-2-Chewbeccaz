@@ -9,7 +9,7 @@ if(is_signed_in() && user_has_role('kund')){
 } else if(is_signed_in() && user_has_role('prenumerant')){
     echo "välkommen, du är i prenumerantläget.";
 } else {
-    echo "välkommen, vänligen logga in för att se mer.";
+    echo "välkommen, vänligen logga in för att se mer hörru.";
 }
 include_once './components/footer.php'; 
 
