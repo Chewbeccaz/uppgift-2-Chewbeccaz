@@ -1,13 +1,21 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
+ob_start();
+require_once './functions.php';
 require_once './components/header.php';
 
+//Endast prenumeranter ska kunna se sina prenumerationer.
+require_role("prenumerant");
+
 //Steg 1. Hämta id via sessionvariabel.
-if (!isset($_SESSION['user_id'])) {
-    echo "Du måste vara inloggad för att kunna se dina prenumerationer.";
-    require_once './components/footer.php';
-    exit;
-}
+// if (!isset($_SESSION['user_id'])) {
+//     echo "Du måste vara inloggad för att kunna se dina prenumerationer.";
+//     require_once './components/footer.php';
+//     exit;
+// }
 
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db");
 
@@ -25,8 +33,11 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-echo "<main><p>My subscriptions.. </p></main>";
+?>
 
+<main>
+    <p>My subscriptions.. </p>
+</main><?php
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<div>";
@@ -42,4 +53,5 @@ $mysql->close();
 $stmt->close();
 
 require_once './components/footer.php';
+ob_end_flush();
 ?>
