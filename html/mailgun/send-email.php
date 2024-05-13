@@ -16,6 +16,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // om epostadressen finns
         $random_code = rand(100000, 999999);
 
+        $save_code = "INSERT INTO generated_codes (email, code) VALUES (?,?)";
+        $save_stmt = $mysql->prepare($save_code);
+        $save_stmt->bind_param("is", $email, $random_code);
+        $save_stmt->execute();
+
+
         $api_key = '6801a1683e8bc05c6caa558441f86332-ed54d65c-90f79098';
         $domain = 'sandboxf6f87e056e944f6ba17636acf63b82a5.mailgun.org';
         $url = 'https://api.mailgun.net/v3/'.$domain.'/messages';
