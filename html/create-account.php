@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // $password_hash = password_hash($password, PASSWORD_DEFAULT); //lägg till detta sen. 
+  
+    // $password_hash = password_hash($password, PASSWORD_DEFAULT); ändra sen. 
 
     $sql = "INSERT INTO users (email, password, role) VALUES (?,?,?)";
     $stmt = $mysql->prepare($sql);
@@ -28,11 +29,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Användare skapad";
+        
+        // Om användaren är en "kund", lägg till en rad i newsletter-tabellen
+        if ($role === 'kund') {
+            $owner = $email; // Användarens e-postadress som ägare
+            $name = "Exempel Titel"; // Hårdkodad titel
+            $description = "Exempel Beskrivning"; // Hårdkodad beskrivning
+            
+            $sqlNewsletter = "INSERT INTO newsletters (name, description, owner) VALUES (?,?,?)";
+            $stmtNewsletter = $mysql->prepare($sqlNewsletter);
+            $stmtNewsletter->bind_param("sss", $name, $description, $owner);
+            
+            if ($stmtNewsletter->execute()) {
+                echo " Du har fått ett exempelnyhetsbrev.";
+            } else {
+                echo "Ett fel uppstod vid skapandet av nyhetsbrev: ". $stmtNewsletter->error;
+            }
+        }
     } else {
         echo "Ett fel uppstod: ". $stmt->error;
     }
 
     $stmt->close();
+    $stmtNewsletter->close(); // Stänga statement för nyhetsbrev
     $mysql->close();
 } else {
     // Om formuläret inte har skickats, visa det igen
