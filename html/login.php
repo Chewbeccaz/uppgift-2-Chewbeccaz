@@ -37,6 +37,8 @@ if(isset($error_msg)) { ?>
 }
 ?> 
 
+<p>Har du glömt ditt lösenord? <a href="login/password.php">Klicka här för att återställa</a>.</p>
+
     <h2>Logga in</h2>
     <form method="post">
         <label for="email">Email:</label>
