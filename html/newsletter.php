@@ -42,8 +42,13 @@ if(isset($_GET['id'])) {
                     echo '<input type="hidden" name="action" value="subscribe">';
                     echo '<button type="submit">Prenumerera</button>';
                     echo '</form>';
-                }
-
+                } 
+            } else {
+                // If the user is not signed in, show the "Logga in för att prenumerera" button
+                echo '<form method="post" action="login.php">';
+                echo '<input type="hidden" name="action" value="subscribe">';
+                echo '<button type="submit">Logga in för att prenumerera</button>';
+                echo '</form>';
             }
 
             //LÄgg till knappar

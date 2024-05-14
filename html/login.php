@@ -4,6 +4,7 @@ session_start();
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db");
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST['email']) && isset($_POST['password'])) {
     $mail = $_POST['email'];
     $password = $_POST['password'];
 
@@ -27,6 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     $stmt->close();
+}
 }
 require_once './components/header.php';
 
