@@ -21,7 +21,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['role'] = $row['role'];
 
-        header("Location: index.php");
+        $redirectTo = isset($_GET['redirectTo'])? $_GET['redirectTo'] : 'index.php';
+        header("Location: ". $redirectTo);
         exit;
     } else {
         $error_msg = "Fel användarnamn eller lösenord";
