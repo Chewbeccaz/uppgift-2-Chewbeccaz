@@ -45,7 +45,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmtUpdate->bind_param("ssi", $name, $description, $id);
 
     if($stmtUpdate->execute()) {
-        echo "<p>Nyhetsbrevet har uppdaterats.</p>";
+        // echo "<p>Nyhetsbrevet har uppdaterats.</p>";
+        $_SESSION['newsletter_updated'] = true;
     } else {
         echo "<p>Något gick fel.". $stmtUpdate->error."</p>" ;
     }
@@ -54,5 +55,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mysql->close();  
 }
 
+if(isset($_SESSION['newsletter_updated']) && $_SESSION['newsletter_updated']) {
+    echo "<p>Nyhetsbrevet har uppdaterats framgångsrikt!</p>";
+    unset($_SESSION['newsletter_updated']); 
+}
 require_once './components/footer.php';
 ?>
