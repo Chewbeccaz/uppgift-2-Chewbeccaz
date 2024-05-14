@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 
 require_once './components/header.php';
 
@@ -20,6 +21,42 @@ if(isset($_GET['id'])) {
             $row = $result->fetch_assoc();
             echo "<main><h2>". htmlspecialchars($row['name']). "</h2>";
             echo "<p>". htmlspecialchars($row['description']). "</p></main>";
+
+            //LÄgg till knappar
+            if(isset($_POST['action']) && $_POST['action'] == 'subscribe') {
+            
+                $sqlSubscribe = "INSERT INTO user_subscriptions (newsletter_id, user_id) VALUES (?,?)";
+                $stmtSubscribe = $mysql->prepare($sqlSubscribe);
+                $stmtSubscribe->bind_param("ii", $id, $_SESSION['user_id']); 
+                if($stmtSubscribe->execute()) {
+                    echo "Successfully subscribed to the newsletter.";
+                } else {
+                    echo "Failed to subscribe: ". $stmtSubscribe->error;
+                }
+                $stmtSubscribe->close();
+            } elseif(isset($_POST['action']) && $_POST['action'] == 'unsubscribe') {
+               
+                $sqlUnsubscribe = "DELETE FROM user_subscriptions WHERE newsletter_id =? AND user_id =?";
+                $stmtUnsubscribe = $mysql->prepare($sqlUnsubscribe);
+                $stmtUnsubscribe->bind_param("ii", $id, $_SESSION['user_id']); 
+                if($stmtUnsubscribe->execute()) {
+                    echo "Successfully unsubscribed from the newsletter.";
+                } else {
+                    echo "Failed to unsubscribe: ". $stmtUnsubscribe->error;
+                }
+                $stmtUnsubscribe->close();
+            } 
+            echo '<form method="post" action="">';
+            echo '<input type="hidden" name="action" value="subscribe">';
+            echo '<button type="submit">Prenumerera</button>';
+            echo '</form>';
+
+        
+            echo '<form method="post" action="">';
+            echo '<input type="hidden" name="action" value="unsubscribe">';
+            echo '<button type="submit">Avluta Prenumeration</button>';
+            echo '</form>';
+
         } else {
             echo "No newsletter found with the selected id.";
         }
