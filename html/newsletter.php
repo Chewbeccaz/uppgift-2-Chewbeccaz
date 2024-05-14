@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 
+require_once './functions.php';
 require_once './components/header.php';
 
 if(isset($_GET['id'])) {
@@ -21,6 +22,29 @@ if(isset($_GET['id'])) {
             $row = $result->fetch_assoc();
             echo "<main><h2>". htmlspecialchars($row['name']). "</h2>";
             echo "<p>". htmlspecialchars($row['description']). "</p></main>";
+
+            //Kolla om användaren är inloggad och prenumerant
+            if(is_signed_in()){
+                $sqlCheckSubscription = "SELECT COUNT(*) AS count FROM user_subscriptions WHERE newsletter_id =? AND user_id =?";
+                $stmtCheckSubscription = $mysql->prepare($sqlCheckSubscription);
+                $stmtCheckSubscription->bind_param("ii", $id, $_SESSION['user_id']);
+                $stmtCheckSubscription->execute();
+                $resultCheckSubscription = $stmtCheckSubscription->get_result();
+                $rowCheckSubscription = $resultCheckSubscription->fetch_assoc();
+
+                if($rowCheckSubscription['count'] > 0) {
+                    echo '<form method="post" action="">';
+                    echo '<input type="hidden" name="action" value="unsubscribe">';
+                    echo '<button type="submit">Avluta Prenumeration</button>';
+                    echo '</form>';
+                } else {
+                    echo '<form method="post" action="">';
+                    echo '<input type="hidden" name="action" value="subscribe">';
+                    echo '<button type="submit">Prenumerera</button>';
+                    echo '</form>';
+                }
+
+            }
 
             //LÄgg till knappar
             if(isset($_POST['action']) && $_POST['action'] == 'subscribe') {
@@ -46,16 +70,6 @@ if(isset($_GET['id'])) {
                 }
                 $stmtUnsubscribe->close();
             } 
-            echo '<form method="post" action="">';
-            echo '<input type="hidden" name="action" value="subscribe">';
-            echo '<button type="submit">Prenumerera</button>';
-            echo '</form>';
-
-        
-            echo '<form method="post" action="">';
-            echo '<input type="hidden" name="action" value="unsubscribe">';
-            echo '<button type="submit">Avluta Prenumeration</button>';
-            echo '</form>';
 
         } else {
             echo "No newsletter found with the selected id.";
