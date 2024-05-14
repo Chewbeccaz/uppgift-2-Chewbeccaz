@@ -32,16 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Om användaren är en "kund", lägg till en rad i newsletter-tabellen
         if ($role === 'kund') {
-            $owner = $email; // Användarens e-postadress som ägare
-            $name = "Exempel Titel"; // Hårdkodad titel
-            $description = "Exempel Beskrivning"; // Hårdkodad beskrivning
+            $owner = $email; 
+            $name = "Exempel Titel"; 
+            $description = "Exempel Beskrivning"; 
             
             $sqlNewsletter = "INSERT INTO newsletters (name, description, owner) VALUES (?,?,?)";
             $stmtNewsletter = $mysql->prepare($sqlNewsletter);
             $stmtNewsletter->bind_param("sss", $name, $description, $owner);
             
             if ($stmtNewsletter->execute()) {
-                echo " Du har fått ett exempelnyhetsbrev.";
+                echo " Du har fått ett exempel-nyhetsbrev.";
             } else {
                 echo "Ett fel uppstod vid skapandet av nyhetsbrev: ". $stmtNewsletter->error;
             }
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
-    $stmtNewsletter->close(); // Stänga statement för nyhetsbrev
+    $stmtNewsletter->close(); 
     $mysql->close();
 } else {
     // Om formuläret inte har skickats, visa det igen
