@@ -29,16 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Användare skapad";
+
+        $lastId = $mysql->insert_id;
         
         // Om användaren är en "kund", lägg till en rad i newsletter-tabellen
         if ($role === 'kund') {
-            $owner = $email; 
+            $owner = $lastId; 
             $name = "Exempel Titel"; 
             $description = "Exempel Beskrivning"; 
             
             $sqlNewsletter = "INSERT INTO newsletters (name, description, owner) VALUES (?,?,?)";
             $stmtNewsletter = $mysql->prepare($sqlNewsletter);
-            $stmtNewsletter->bind_param("sss", $name, $description, $owner);
+            $stmtNewsletter->bind_param("ssi", $name, $description, $owner);
             
             if ($stmtNewsletter->execute()) {
                 echo " Du har fått ett exempel-nyhetsbrev.";
