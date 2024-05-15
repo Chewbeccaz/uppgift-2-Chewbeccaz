@@ -2,7 +2,11 @@
 session_start();
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db"); 
 
-require_once '../components/header.php';
+require_once './components/header.php';
+
+// Retrieve email and code from the URL
+$email = isset($_GET['email'])? $_GET['email'] : '';
+$code = isset($_GET['code'])? $_GET['code'] : '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -40,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 } else {
     // Skapa en form för att skicka e-postadressen och koden
+    echo 'Du har fått ett mail med en återställningskod i din skräppost. <br>';
     echo '<form method="post" action="">';
     echo 'E-post: <input type="email" name="email" required><br>';
     echo 'Kod: <input type="text" name="code" required><br>';
@@ -48,5 +53,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '</form>';
 }
 
-require_once '../components/footer.php';
+require_once './components/footer.php';
 ?>
