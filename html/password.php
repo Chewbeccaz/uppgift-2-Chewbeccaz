@@ -1,8 +1,10 @@
 <?php
+ob_start();
 session_start();
+require_once './functions.php';
+
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db"); 
 
-require_once '../components/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -48,7 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($response === false) {
             die('Curl failed: '. curl_error($ch));
         } else {
-            echo 'Du har fått ettmail med återställningskod i din skräppost!!';
+            ob_end_clean(); 
+            header("Location: new-password.php?email=$email&code=$random_code");
+            exit;
+            // echo 'Du har fått ettmail med återställningskod i din skräppost!!';
         }
     } else {
         echo "E-postadressen finns inte i databasen.";
@@ -56,11 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $stmt->close();
 } else {
+    require_once './components/header.php';
     echo '<form method="post" action="">';
     echo 'E-post: <input type="email" name="email" required><br>';
     echo '<input type="submit" value="Skicka återställningskod">';
     echo '</form>';
 }
 
-require_once '../components/footer.php';
+require_once './components/footer.php';
 ?>
