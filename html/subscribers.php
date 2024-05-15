@@ -23,7 +23,7 @@ if (isset($_SESSION['user_id'])) {
         $newsletter_id = $newsletter['id'];
 
         // Hämta prenumeranter av nyhetsbrevets id
-        $sqlGetSubscribers = "SELECT u.email, u.role 
+        $sqlGetSubscribers = "SELECT u.email, u.firstname, u.lastname
                               FROM users u 
                               JOIN user_subscriptions us ON u.id = us.user_id 
                               WHERE us.newsletter_id = ?";
@@ -32,9 +32,9 @@ if (isset($_SESSION['user_id'])) {
         $stmtGetSubscribers->execute();
         $resultGetSubscribers = $stmtGetSubscribers->get_result();
 
-        echo "<table border='1'><tr><th>Email:</th><th>Roll:</th></tr>";
+        echo "<table border='1'><tr><th>Email:</th><th>Firstname:</th><th>Lastname:</th></tr>";
         while ($row = $resultGetSubscribers->fetch_assoc()) {
-            echo "<tr><td>{$row['email']}</td><td>{$row['role']}</td></tr>";
+            echo "<tr><td>{$row['email']}</td><td>{$row['firstname']}</td><td>{$row['lastname']}</td></tr>";
         }
         echo "</table>";
 
