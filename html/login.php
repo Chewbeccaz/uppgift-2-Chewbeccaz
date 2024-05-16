@@ -8,16 +8,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-    $stmt = $mysql->prepare($sql);
-    $stmt->bind_param("ss", $mail, $password);
 
+    $sql = "SELECT id, role, password FROM users WHERE email =?";
+    $stmt = $mysql->prepare($sql);
+    $stmt->bind_param("s", $mail); 
     $stmt->execute();
     $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
 
-    if($result->num_rows > 0){
-        //Starta session om användare hittas
-        $row = $result->fetch_assoc();
+    $hashed_password_from_db = $row['password'];
+    $user_id = $row['id'];
+    $user_role = $row['role'];
+
+    if(password_verify($password, $hashed_password_from_db)) {
+        // om lösen är giltigt, starta session och logga in användaren
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['role'] = $row['role'];
 
