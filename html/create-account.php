@@ -22,6 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+     // En kontroll för att se om e-postadressen redan finns i databasen
+     $checkEmailSql = "SELECT * FROM users WHERE email =?";
+     $checkEmailStmt = $mysql->prepare($checkEmailSql);
+     $checkEmailStmt->bind_param("s", $email);
+ 
+     $checkEmailStmt->execute();
+     $checkEmailResult = $checkEmailStmt->get_result();
+ 
+     if ($checkEmailResult->num_rows > 0) {
+         echo "En användare med den angivna e-postadressen finns redan.";
+         exit;
+     }
   
     // $password_hash = password_hash($password, PASSWORD_DEFAULT); ändra sen. 
 
@@ -45,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmtNewsletter->bind_param("ssi", $name, $description, $owner);
             
             if ($stmtNewsletter->execute()) {
-                echo " Du har fått ett exempel-nyhetsbrev.";
+                echo " Du har fått ett exempel-nyhetsbrev som du kan redigera under my newsletter.";
             } else {
                 echo "Ett fel uppstod vid skapandet av nyhetsbrev: ". $stmtNewsletter->error;
             }
