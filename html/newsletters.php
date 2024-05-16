@@ -18,6 +18,7 @@ if ($result->num_rows > 0) {
         echo "<div>";
         echo "<h3>" . $row['name'] . "</h3>";
         echo "<p>" . $row['description'] . "</p>";
+        echo "<a href='newsletter.php?id=". $row['id']. "' class='btn btn-primary'>Läs mer</a>";
         echo "</div>";
     }
 } else {
