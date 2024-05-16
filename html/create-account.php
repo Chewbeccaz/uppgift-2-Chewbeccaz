@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
      // En kontroll för att se om e-postadressen redan finns i databasen
+     //Om man byter roll? 
      $checkEmailSql = "SELECT * FROM users WHERE email =?";
      $checkEmailStmt = $mysql->prepare($checkEmailSql);
      $checkEmailStmt->bind_param("s", $email);
@@ -35,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          exit;
      }
   
-    // $password_hash = password_hash($password, PASSWORD_DEFAULT); ändra sen. 
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO users (email, firstname, lastname, password, role) VALUES (?,?,?,?,?)";
     $stmt = $mysql->prepare($sql);
-    $stmt->bind_param("sssss", $email, $firstname, $lastname, $password, $role);
+    $stmt->bind_param("sssss", $email, $firstname, $lastname, $hashed_password, $role);
 
     if ($stmt->execute()) {
         echo "Användare skapad";

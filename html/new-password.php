@@ -30,10 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows > 0) {
         // Koden är giltig, uppdatera lösenordet
-        // $hashed_password = password_hash($new_password, PASSWORD_DEFAULT); //LÄgg till hash sen. 
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+
         $update_sql = "UPDATE users SET password =? WHERE email =?";
         $update_stmt = $mysql->prepare($update_sql);
-        $update_stmt->bind_param("ss", $new_password, $email);
+        $update_stmt->bind_param("ss", $hashed_password, $email);
         $update_stmt->execute();
 
         echo "Lösenordet har uppdaterats.";
