@@ -10,13 +10,6 @@ require_once './components/header.php';
 //Endast prenumeranter ska kunna se sina prenumerationer.
 require_role("prenumerant");
 
-//Steg 1. Hämta id via sessionvariabel.
-// if (!isset($_SESSION['user_id'])) {
-//     echo "Du måste vara inloggad för att kunna se dina prenumerationer.";
-//     require_once './components/footer.php';
-//     exit;
-// }
-
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db");
 
 if ($mysql->connect_error) {
@@ -43,11 +36,31 @@ if ($result->num_rows > 0) {
         echo "<div>";
         echo "<h2>". $row["name"]. "</h2>";
         echo "<p>". $row["description"]. "</p>";
+        echo '<form method="post" action="">';
+        echo '<input type="hidden" name="action" value="unsubscribe">';
+        echo '<input type="hidden" name="newsletter_id" value="'. $row["id"].'">';
+        echo '<button type="submit">Avluta Prenumeration</button>';
+        echo '</form>';
         echo "</div>";
     }
 } else {
     echo "No subscriptions found.";
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'unsubscribe') {
+    $newsletter_id = $_POST['newsletter_id'];
+    
+    $sqlUnsubscribe = "DELETE FROM user_subscriptions WHERE newsletter_id =? AND user_id =?";
+    $stmtUnsubscribe = $mysql->prepare($sqlUnsubscribe);
+    $stmtUnsubscribe->bind_param("ii", $newsletter_id, $user_id);
+    if ($stmtUnsubscribe->execute()) {
+        echo "Du har nu avslutat prenumerationen.";
+    } else {
+        echo "Något blev fel. ". $stmtUnsubscribe->error;
+    }
+    $stmtUnsubscribe->close();
+}
+
 
 $mysql->close();
 $stmt->close();
