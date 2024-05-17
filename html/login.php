@@ -50,11 +50,13 @@ if(isset($error_msg)) { ?>
         <input type="email" id="email" name="email" required><br><br>
         <label for="password">Lösenord:</label>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Logga in">
+        <input type="submit" class="btn-primary" value="Logga in">
     </form>
 </div>
-
-<p class="reset-password">Har du glömt ditt lösenord? <a href="password.php">Klicka här för att återställa</a>.</p>
+<div class="reset-password">
+<p>Har du glömt ditt lösenord?</p>
+<a href="password.php" class="btn-primary">Klicka här för att återställa</a>
+</div>
 
 </main>
 

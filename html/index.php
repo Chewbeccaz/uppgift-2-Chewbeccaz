@@ -14,24 +14,12 @@ include_once './components/header.php';
         } else if(is_signed_in() && user_has_role('prenumerant')){
             echo "Du är inloggad som prenumerant. <br>";
             echo "Du hittar dina prenumerationer i menyn. <br>";
-            echo "Här hittar du fler nyhetsbrev att prenumerera på. <a href='newsletters.php'>Alla nyhetsbrev</a>";
+            echo "Här hittar du fler nyhetsbrev att prenumerera på. <br><br> <a href='newsletters.php' class='btn btn-primary'>Alla nyhetsbrev</a>";
         } else {
-            echo "Logga in för att börja prenumerera på nyhetsbrev. <br>";
-            echo "<a href='newsletters.php'>Alla nyhetsbrev</a>";
+            echo "Logga in för att börja prenumerera på nyhetsbrev. <br><br>";
+            echo "<a href='newsletters.php' class='btn btn-primary'>Alla nyhetsbrev</a>";
         }
        ?>
     </main>
 
     <?php include_once './components/footer.php';?>
-
-<!-- echo "<main><p class='welcome-message'>This is the main content of the page.</p></main>";
-if(is_signed_in() && user_has_role('kund')){
-    echo "välkommen, du är i kundläget.";
-} else if(is_signed_in() && user_has_role('prenumerant')){
-    echo "välkommen, du är i prenumerantläget.";
-} else {
-    echo "välkommen, vänligen logga in för att se mer hörru.";
-}
-include_once './components/footer.php'; 
-
-?> -->

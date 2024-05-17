@@ -123,8 +123,12 @@ form {
 .reset-password {
   margin-top: 20px;
 }
+.reset-password p {
+  margin-bottom: 10px;
+}
 
-.account-form {
+.account-form,
+.my-newsletter-form {
   margin: 0 auto;
   background-color: #f8f9fa;
   padding: 40px;
@@ -134,9 +138,19 @@ form {
   width: 50%;
 }
 
-.account-form label {
+.account-form,
+.my-newsletter-form label {
   display: block;
   margin-bottom: 3px;
+}
+
+.my-newsletter-form input,
+.my-newsletter-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
 }
 
 .account-form input[type="text"],
@@ -148,20 +162,6 @@ form {
   margin-bottom: 15px;
   border: 1px solid #ced4da;
   border-radius: 4px;
-}
-
-.account-form input[type="submit"] {
-  background-color: #9ac5a4;
-  color: white;
-  cursor: pointer;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.account-form input[type="submit"]:hover {
-  background-color: #77a582;
 }
 
 /* STYLING FÖR MY SUBSCRIBERS */
@@ -205,17 +205,15 @@ table tr:hover {
 /* KNAPPAR */
 
 .btn-primary {
-  background-color: #28a745; /* Grön bakgrundsfärg */
-  color: white; /* Vit textfärg */
-  padding: 10px 20px; /* Padding runt texten */
-  text-decoration: none; /* Ta bort understrykning */
-  border-radius: 5px; /* Runda hörn */
-  font-weight: bold; /* Fet text */
-  display: inline-block; /* Behålla linjebrytning */
-  margin: 10px 0; /* Ytterligare marginal runt knappen */
-  transition: background-color 0.3s ease; /* Smidig bakgrundsfärgskiftning vid hover */
+  background-color: #87b392;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #218838; /* Mörkare grön när muspeppar är över knappen */
+  background-color: #6e9c79;
 }

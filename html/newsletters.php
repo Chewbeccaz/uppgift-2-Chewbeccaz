@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<div class='newsletter-item'>";
         echo "<h3>" . $row['name'] . "</h3>";
-        echo "<p>" . $row['description'] . "</p>";
+        echo "<p>" . $row['description'] . "</p> <br>";
         echo "<a href='newsletter.php?id=". $row['id']. "' class='btn btn-primary'>Läs mer</a>";
         echo "</div>";
     }

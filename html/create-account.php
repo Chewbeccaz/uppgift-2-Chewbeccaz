@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="kund">Kund</option>
                     <option value="prenumerant">Prenumerant</option>
                   </select><br>
-            <input type="submit" value="SKAPA KONTO">
+            <input type="submit" class="btn-primary" value="SKAPA KONTO">
         </form>
 </div>
 

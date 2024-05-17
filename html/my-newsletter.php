@@ -23,14 +23,17 @@ $stmt->close();
 
 if ($row) {
     echo "<main><p>DITT NYHETSBREV.</p>";
+    echo "<div class='my-newsletter-form'>";
     echo "<form method='post' action=''>";
     echo "<label for='name'>Titel:</label><br>";
     echo "<input type='text' id='name' name='name' value='". htmlspecialchars($row['name']?? '')."' required><br>";
     echo "<label for='description'>Beskrivning:</label><br>";
     echo "<textarea id='description' name='description'>". htmlspecialchars($row['description']?? '')."</textarea><br>";
-    echo "<input type='hidden' name='id' value='". htmlspecialchars($row['id']?? '')."'>";
-    echo "<input type='submit' value='Spara ändringar'>";
+    echo "<input type='hidden' name='id' value='". htmlspecialchars($row['id']?? '')."'> <br>";
+    // echo "<input type='submit' value='Spara ändringar'>";
+    echo '<button type="submit" class="btn-primary">Spara ändringar</button>';
     echo "</form>";
+    echo "</div>";
     echo "</main>";
 } else {
     echo "Inget nyhetsbrev hittades för dig.";
