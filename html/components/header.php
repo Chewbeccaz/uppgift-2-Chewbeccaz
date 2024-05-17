@@ -28,34 +28,19 @@ if (!is_signed_in()) {
 <!-- Header.php ska innehålla öppningstaggarna -->
 <html>
 <head>
-    <title><?php echo $pageTitle;?></title>
+    <title>Har du Hört AB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
     <body>
-<header>
-    <div>Logo</div>
-    <h1>My Website 2</h1>
-    <nav>
-        <ul>
+<header class="site-header">
+    <div class="logo">Har Du Hört?</div>
+    <nav class="navbar">
+        <ul class="navbar-menu">
             <?php foreach ($menuPages as $page):?>
                 <li><a href="<?php echo $page['href'];?>"><?php echo $page['text'];?></a></li>
             <?php endforeach;?>
         </ul>
     </nav>
-    <!-- <nav>
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="create-account.php">Create account</a></li>
-            <li><a href="newsletters.php">print newsletters</a></li>
-            <li><a href="newsletter.php">newsletter prenumerera/avregistrera</a></li>
-            <li><a href="login.php">Log in</a></li>
-            <li><a href="login/password.php">återställ lösenord</a></li>
-            <li><a href="login/new-password.php">ange nytt lösenord</a></li>
-            <li><a href="logged-out.php">utloggad</a></li>
-            <li><a href="my-page.php">Min sida</a></li>
-            <li><a href="my-subscriptions.php">Mina prenumerationer</a></li>
-            <li><a href="subscribers.php">Mina prenumeranter</a></li>
-            <li><a href="my-newsletter.php">Mitt nyhetsbrev, redigera</a></li>
-        </ul>
-    </nav> -->
+    <!-- <h1>My Website 2</h1> -->
 </header>

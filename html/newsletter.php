@@ -20,8 +20,9 @@ if(isset($_GET['id'])) {
      $result = $stmt->get_result();
      if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            echo "<main><h2>". htmlspecialchars($row['name']). "</h2>";
-            echo "<p>". htmlspecialchars($row['description']). "</p></main>";
+            echo "<main>"; 
+            echo "<h2>". htmlspecialchars($row['name']). "</h2>";
+            echo "<p>". htmlspecialchars($row['description']). "</p>";
 
             //Kolla om användaren är inloggad och prenumerant
             if(is_signed_in()){
@@ -35,19 +36,19 @@ if(isset($_GET['id'])) {
                 if($rowCheckSubscription['count'] > 0) {
                     echo '<form method="post" action="">';
                     echo '<input type="hidden" name="action" value="unsubscribe">';
-                    echo '<button type="submit">Avluta Prenumeration</button>';
+                    echo '<button type="submit" class="btn-primary">Avluta Prenumeration</button>';
                     echo '</form>';
                 } else {
                     echo '<form method="post" action="">';
                     echo '<input type="hidden" name="action" value="subscribe">';
-                    echo '<button type="submit">Prenumerera</button>';
+                    echo '<button type="submit" class="btn-primary">Prenumerera</button>';
                     echo '</form>';
                 } 
             } else {
                 // If the user is not signed in, show the "Logga in för att prenumerera" button
                 echo '<form method="post" action="login.php">';
                 echo '<input type="hidden" name="action" value="subscribe">';
-                echo '<button type="submit">Logga in för att prenumerera</button>';
+                echo '<button type="submit" class="btn-primary">Logga in för att prenumerera</button>';
                 echo '</form>';
             }
 
@@ -88,5 +89,6 @@ if(isset($_GET['id'])) {
     echo "No id provided.";
 }
 
+echo "</main>";
 require_once './components/footer.php';
 ?>
