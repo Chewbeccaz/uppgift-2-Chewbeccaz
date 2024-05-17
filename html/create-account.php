@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once './components/header.php';
 ?>
 
-<div>
+<div class="account-form">
 <h3>SKAPA KONTO:</h3>
         <form method="post">
             E-post: <input type="email" name="email" required><br>

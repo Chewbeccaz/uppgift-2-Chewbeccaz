@@ -47,7 +47,6 @@ body {
   color: #333;
   background-color: #f8f9fa;
   margin: 0;
-  /* padding: 0 20px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,13 +60,6 @@ body {
 .site-footer {
   flex: 1;
 }
-/* 
-.site-header,
-.site-footer {
-  width: 100%;
-  height: 1%;
-  margin: 0 auto;
-} */
 
 main {
   width: 80%;
@@ -78,8 +70,6 @@ main {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 40px 0;
-  /* margin-top: 40px;
-  margin-bottom: 40px; */
 }
 
 .welcome-message {
@@ -108,7 +98,6 @@ main {
   margin: 10px 60px;
   padding: 20px;
   border-radius: 10px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 .column h3 {
@@ -119,4 +108,114 @@ main {
 .column p,
 .column a {
   margin: 0;
+}
+
+/*  FORMULÄR-STYLING */
+
+form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.reset-password {
+  margin-top: 20px;
+}
+
+.account-form {
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 50%;
+}
+
+.account-form label {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.account-form input[type="text"],
+.account-form input[type="email"],
+.account-form input[type="password"],
+.account-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.account-form input[type="submit"] {
+  background-color: #9ac5a4;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.account-form input[type="submit"]:hover {
+  background-color: #77a582;
+}
+
+/* STYLING FÖR MY SUBSCRIBERS */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+table tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #dee2e6;
+}
+
+table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: bold;
+}
+
+table tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* NEWSLETTERS */
+
+.newsletter-item {
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+/* KNAPPAR */
+
+.btn-primary {
+  background-color: #28a745; /* Grön bakgrundsfärg */
+  color: white; /* Vit textfärg */
+  padding: 10px 20px; /* Padding runt texten */
+  text-decoration: none; /* Ta bort understrykning */
+  border-radius: 5px; /* Runda hörn */
+  font-weight: bold; /* Fet text */
+  display: inline-block; /* Behålla linjebrytning */
+  margin: 10px 0; /* Ytterligare marginal runt knappen */
+  transition: background-color 0.3s ease; /* Smidig bakgrundsfärgskiftning vid hover */
+}
+
+.btn-primary:hover {
+  background-color: #218838; /* Mörkare grön när muspeppar är över knappen */
 }

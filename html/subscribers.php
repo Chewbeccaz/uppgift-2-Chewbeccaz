@@ -32,11 +32,13 @@ if (isset($_SESSION['user_id'])) {
         $stmtGetSubscribers->execute();
         $resultGetSubscribers = $stmtGetSubscribers->get_result();
 
+        echo "<main><h2>Dina prenumeranter</h2>";
         echo "<table border='1'><tr><th>Email:</th><th>Firstname:</th><th>Lastname:</th></tr>";
         while ($row = $resultGetSubscribers->fetch_assoc()) {
             echo "<tr><td>{$row['email']}</td><td>{$row['firstname']}</td><td>{$row['lastname']}</td></tr>";
         }
         echo "</table>";
+        echo "</main>";
 
         $stmtGetSubscribers->close();
     } else {

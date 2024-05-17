@@ -22,7 +22,7 @@ $row = $result->fetch_assoc();
 $stmt->close();
 
 if ($row) {
-    echo "<main><p>DITT NYHETSBREV.</p></main>";
+    echo "<main><p>DITT NYHETSBREV.</p>";
     echo "<form method='post' action=''>";
     echo "<label for='name'>Titel:</label><br>";
     echo "<input type='text' id='name' name='name' value='". htmlspecialchars($row['name']?? '')."' required><br>";
@@ -31,6 +31,7 @@ if ($row) {
     echo "<input type='hidden' name='id' value='". htmlspecialchars($row['id']?? '')."'>";
     echo "<input type='submit' value='Spara ändringar'>";
     echo "</form>";
+    echo "</main>";
 } else {
     echo "Inget nyhetsbrev hittades för dig.";
 }

@@ -37,16 +37,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 require_once './components/header.php';
 
-echo "<main><p>LOG IN</p></main>";
+echo "<main>";
 if(isset($error_msg)) { ?>
 <p style="color: red;"><?php echo $error_msg; ?></p>
 <?php 
 }
 ?> 
-
-<p>Har du glömt ditt lösenord? <a href="password.php">Klicka här för att återställa</a>.</p>
-
-    <h2>Logga in</h2>
+<div class="account-form">
+<h2>Logga in</h2>
     <form method="post">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
@@ -54,6 +52,11 @@ if(isset($error_msg)) { ?>
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Logga in">
     </form>
+</div>
+
+<p class="reset-password">Har du glömt ditt lösenord? <a href="password.php">Klicka här för att återställa</a>.</p>
+
+</main>
 
 <?php
 require_once './components/footer.php';
