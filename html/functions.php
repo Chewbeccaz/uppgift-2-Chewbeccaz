@@ -1,7 +1,7 @@
 <?php 
 
 function is_signed_in() {
-    return isset($_SESSION['user_id']); //Returnerar true om användaren är inloggad, annars false
+    return isset($_SESSION['user_id']);
 }
 
 function user_has_role($role) {
@@ -11,20 +11,21 @@ function user_has_role($role) {
     return false;
 }
 
-// function require_role() {
-//     if (!is_signed_in()) {
-//         header("Location: no-access.php");
-//         exit;
-//     }
-//     if (!user_has_role($role)) {
+//Göra en egen för kund eller ta bort hårdkodade. bara role.?
+// function require_role($role = "prenumerant") { 
+//     if (!is_signed_in() ||!user_has_role($role)) {
 //         header("Location: no-access.php");
 //         exit;
 //     }
 // }
+// 
 
-//Göra en egen för kund eller ta bort hårdkodade. bara role. 
-function require_role($role = "prenumerant") { 
-    if (!is_signed_in() ||!user_has_role($role)) {
+function require_role($role) { 
+    if (!is_signed_in()) {
+        header("Location: no-access.php");
+        exit;
+    }
+    if (!user_has_role($role)) {
         header("Location: no-access.php");
         exit;
     }

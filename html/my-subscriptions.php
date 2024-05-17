@@ -29,23 +29,25 @@ $result = $stmt->get_result();
 ?>
 
 <main>
-    <p>My subscriptions.. </p>
-</main><?php
+    <h2>My subscriptions: </h2>
+<?php
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "<div>";
-        echo "<h2>". $row["name"]. "</h2>";
-        echo "<p>". $row["description"]. "</p>";
+       
         echo '<form method="post" action="">';
+        echo "<div>";
+        echo "<h3>". $row["name"]. "</h3>";
+        echo "<p>". $row["description"]. "</p>";
         echo '<input type="hidden" name="action" value="unsubscribe">';
-        echo '<input type="hidden" name="newsletter_id" value="'. $row["id"].'">';
-        echo '<button type="submit">Avluta Prenumeration</button>';
+        echo '<input type="hidden" name="newsletter_id" value="'. $row["id"].'"> <br>';
+        echo '<button type="submit" class="btn-primary">Avsluta Prenumeration</button>';
         echo '</form>';
         echo "</div>";
     }
 } else {
     echo "No subscriptions found.";
 }
+echo "</main>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'unsubscribe') {
     $newsletter_id = $_POST['newsletter_id'];

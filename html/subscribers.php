@@ -1,6 +1,9 @@
 <?php
 session_start();
+require_once './functions.php';
+require_role("kund");
 require_once './components/header.php';
+
 
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db");
 

@@ -22,8 +22,6 @@ if (!is_signed_in()) {
     $menuPages[] = ['href' => 'subscribers.php', 'text' => 'My subscribers'];
     $menuPages[] = ['href' => 'logout.php', 'text' => 'Log out'];
 }
-
-
 ?>    
 <!-- Header.php ska innehålla öppningstaggarna -->
 <html>
