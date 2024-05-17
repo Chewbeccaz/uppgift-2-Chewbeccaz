@@ -1,11 +1,8 @@
 <?php
-ob_start();
 session_start(); 
-
-require_once './components/header.php';
 require_once './functions.php';
-
 require_role("kund");
+require_once './components/header.php';
 
 $mysql = new mysqli("db", "root", "notSecureChangeMe", "newsletter_db");
 
@@ -68,6 +65,4 @@ if(isset($_SESSION['newsletter_updated']) && $_SESSION['newsletter_updated']) {
 }
 
 require_once './components/footer.php';
-
-ob_end_clean(); 
 ?>
