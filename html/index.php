@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include 'functions.php';
 include_once './components/header.php';
 

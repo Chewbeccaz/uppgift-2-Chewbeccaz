@@ -1,6 +1,7 @@
 <?php 
 // session_start(); 
 include_once './functions.php';
+show_cookie_banner();
 
 $menuPages = [];
 if (!is_signed_in()) {
