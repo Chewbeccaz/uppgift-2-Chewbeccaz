@@ -53,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ob_end_clean(); 
             header("Location: new-password.php?email=$email&code=$random_code");
             exit;
-            // echo 'Du har fått ettmail med återställningskod i din skräppost!!';
         }
     } else {
         echo "E-postadressen finns inte i databasen.";
