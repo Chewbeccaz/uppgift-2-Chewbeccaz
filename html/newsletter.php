@@ -90,5 +90,5 @@ if(isset($_GET['id'])) {
 }
 
 echo "</main>";
-require_once './components/footer.php';
+include_once("/var/www/html/components/footer.php");
 ?>

@@ -68,5 +68,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '</form>';
 }
 
-require_once './components/footer.php';
-?>
+include_once("/var/www/html/components/footer.php");?>
