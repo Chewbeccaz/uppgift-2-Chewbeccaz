@@ -9,6 +9,12 @@ if ($mysql->connect_error) {
 
 // Kontrollera om formuläret har skickats
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (!isset($_POST['accept_terms']) ||!$_POST['accept_terms']) {
+        echo "Du måste godkänna personuppgiftshantering för att skapa ett konto.";
+        exit;
+    }
+
     $email = $_POST['email'];
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -74,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mysql->close();
 } else {
     // Om formuläret inte har skickats, visa det igen
-    require_once './components/header.php';
+    include_once("/var/www/html/components/header.php");
 ?>
 
 <div class="account-form">
@@ -89,6 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="kund">Kund</option>
                     <option value="prenumerant">Prenumerant</option>
                   </select><br>
+            <!-- <input type="submit" class="btn-primary" value="SKAPA KONTO"> -->
+            Godkänn personuppgiftshantering:<br>
+            <input type="checkbox" name="accept_terms" id="accept_terms" required><label for="accept_terms">Jag godkänner personuppgiftshantering enligt PUL</label><br>
             <input type="submit" class="btn-primary" value="SKAPA KONTO">
         </form>
 </div>
