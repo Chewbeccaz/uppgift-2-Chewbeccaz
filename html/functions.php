@@ -11,15 +11,6 @@ function user_has_role($role) {
     return false;
 }
 
-//Göra en egen för kund eller ta bort hårdkodade. bara role.?
-// function require_role($role = "prenumerant") { 
-//     if (!is_signed_in() ||!user_has_role($role)) {
-//         header("Location: no-access.php");
-//         exit;
-//     }
-// }
-// 
-
 function require_role($role) { 
     if (!is_signed_in()) {
         header("Location: no-access.php");

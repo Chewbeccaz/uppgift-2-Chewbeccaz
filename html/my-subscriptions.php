@@ -67,6 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 $mysql->close();
 $stmt->close();
 
-require_once './components/footer.php';
+include_once("/var/www/html/components/footer.php");
 ob_end_flush();
 ?>

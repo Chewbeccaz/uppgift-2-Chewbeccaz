@@ -60,6 +60,4 @@ if(isset($error_msg)) { ?>
 
 </main>
 
-<?php
-require_once './components/footer.php';
-?>
+<?php include_once("/var/www/html/components/footer.php");?>

@@ -1,8 +1,8 @@
 <?php
+
 session_start();
 include 'functions.php';
 include_once './components/header.php';
-
 ?>
 
 <main>
@@ -22,4 +22,9 @@ include_once './components/header.php';
        ?>
     </main>
 
-    <?php include_once("/var/www/html/components/footer.php");?>
+<h1>FUnkar detta test? </h1>
+
+<?php 
+// include_once './components/footer.php';
+include_once("/var/www/html/components/footer.php");
+?>
