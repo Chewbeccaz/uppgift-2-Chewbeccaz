@@ -41,5 +41,4 @@ if (!is_signed_in()) {
             <?php endforeach;?>
         </ul>
     </nav>
-    <!-- <h1>My Website 2</h1> -->
 </header>

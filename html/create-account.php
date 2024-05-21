@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
      // En kontroll för att se om e-postadressen redan finns i databasen
-     //Om man byter roll? 
      $checkEmailSql = "SELECT * FROM users WHERE email =?";
      $checkEmailStmt = $mysql->prepare($checkEmailSql);
      $checkEmailStmt->bind_param("s", $email);
@@ -95,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="kund">Kund</option>
                     <option value="prenumerant">Prenumerant</option>
                   </select><br>
-            <!-- <input type="submit" class="btn-primary" value="SKAPA KONTO"> -->
             Godkänn personuppgiftshantering:<br>
             <input type="checkbox" name="accept_terms" id="accept_terms" required><label for="accept_terms">Jag godkänner personuppgiftshantering enligt PUL</label><br>
             <input type="submit" class="btn-primary" value="SKAPA KONTO">

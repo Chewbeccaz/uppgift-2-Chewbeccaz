@@ -31,7 +31,6 @@ if ($row) {
     echo "<label for='description'>Beskrivning:</label><br>";
     echo "<textarea id='description' name='description'>". htmlspecialchars($row['description']?? '')."</textarea><br>";
     echo "<input type='hidden' name='id' value='". htmlspecialchars($row['id']?? '')."'> <br>";
-    // echo "<input type='submit' value='Spara ändringar'>";
     echo '<button type="submit" class="btn-primary">Spara ändringar</button>';
     echo "</form>";
     echo "</div>";
